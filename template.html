@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="45 задач по Python с автопроверкой.">
+<title>Практикум по Python</title>
+<style>
+:root{color-scheme:light;--navy:#152234;--ink:#192641;--muted:#4e607b;--blue:#254ac5;--mint:#ccf992;--line:#d5deeb;font-family:system-ui,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:#f4f6fa;color:var(--ink)}button,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible{outline:3px solid #e99739;outline-offset:3px}[hidden]{display:none!important}header{background:var(--navy);color:#fff}.bar{display:flex;align-items:center;justify-content:space-between;gap:15px;max-width:1280px;margin:auto;padding:17px 35px}.brand{font-size:17px;font-weight:760;display:flex;align-items:center;gap:12px}.icon{background:var(--mint);color:var(--navy);border-radius:8px;padding:7px 9px;font:700 15px monospace}.score{color:var(--mint);font-size:14px;font-weight:680;display:flex;align-items:center;gap:10px}progress{width:85px;height:8px;accent-color:var(--mint)}
+.layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:35px;max-width:1280px;margin:auto;padding:32px 35px 45px}aside h2{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted)}#topics{display:grid;gap:4px}.topic{display:grid;grid-template-columns:24px 1fr 26px;align-items:center;text-align:left;gap:5px;border:0;background:transparent;color:var(--ink);padding:11px 8px;border-radius:8px;font-size:14px;min-height:41px}.topic:hover{background:#e8edf7}.topic[aria-current]{background:#e2eaff;color:#183aa8;font-weight:700}.topic span:first-child{font:700 12px monospace;color:var(--blue)}.topic small{text-align:right;color:var(--muted)}.mobile{display:none}.side-note{margin-top:22px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:13px;line-height:1.45}.export{background:#fff;border:1px solid #b9c8df;color:#2246a6;border-radius:7px;padding:8px 10px;font-weight:700}.export:disabled{opacity:.55;cursor:default}
+.eyebrow{color:var(--blue);font-weight:750;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 7px}h1{font-size:clamp(27px,4vw,42px);line-height:1.14;margin:0 0 8px;letter-spacing:-.04em}.intro{color:var(--muted);margin:0;line-height:1.45}.tasks{display:flex;gap:8px;flex-wrap:wrap;margin:21px 0 14px}.task{min-height:39px;padding:8px 12px;border:1px solid #c7d3e8;border-radius:8px;background:#fff;color:var(--ink);font:700 14px monospace}.task[aria-current]{color:#fff;background:var(--blue);border-color:var(--blue)}.task:hover:not([aria-current]){background:#e8efff}.sheet{border:1px solid var(--line);background:#fff;border-radius:13px;overflow:hidden;box-shadow:0 5px 18px #2638580b}.condition{padding:20px 22px}.condition h2{margin:0 0 7px;font-size:20px}.condition p{margin:0;max-width:72ch;line-height:1.55}.editor{background:#18273b;color:#eff5ff}.editor label{display:flex;justify-content:space-between;gap:10px;background:#111d2e;padding:9px 20px;color:#d0dcf0;font-size:13px}.editor label span{font:600 12px monospace;color:#b3c7e3}textarea{display:block;width:100%;min-height:215px;resize:vertical;border:0;outline:0;background:transparent;color:#eff6ff;padding:16px 20px;font:14px/1.6 Consolas,monospace;tab-size:4}textarea:focus{box-shadow:inset 0 0 0 2px #9bb5ff}textarea::placeholder{color:#a8b9d4}.actions{display:flex;align-items:center;gap:13px;padding:13px 22px}.submit{border:0;background:var(--blue);color:#fff;border-radius:8px;padding:11px 15px;font-weight:750;min-height:42px}.submit:hover{background:#193baa}.submit:disabled{opacity:.65;cursor:wait}.shortcut{color:var(--muted);font-size:12px}.feedback{margin:0 22px 16px;padding:11px 13px;border-radius:8px;background:#edf1f8;font-size:14px;line-height:1.45;overflow-wrap:anywhere}.feedback.ok{background:#e9f7ee;color:#145d39}.feedback.wrong,.feedback.blocked{background:#fff4e3;color:#884010}.feedback.error{background:#fcecee;color:#9c2532}.feedback strong{display:block;margin-bottom:3px}.feedback pre{margin:6px 0 0;white-space:pre-wrap;font:13px/1.45 Consolas,monospace}.bottom{display:flex;justify-content:space-between;gap:12px;margin-top:13px}.arrow{border:0;background:none;color:var(--blue);padding:7px 1px;font-weight:650}.arrow:disabled{color:#69768b;opacity:.55;cursor:default}
+@media(max-width:760px){.bar{padding:14px 16px}.brand{font-size:14px;gap:8px}.score{font-size:12px}.score progress,.desktop,.shortcut{display:none}.layout{display:flex;flex-direction:column;gap:17px;padding:17px 15px 30px}.mobile{display:block}.mobile label{display:block;font-size:12px;font-weight:700;margin-bottom:5px}.mobile select{width:100%;padding:9px;background:#fff;border:1px solid #b3c0d6;border-radius:8px;color:var(--ink)}.side-note{margin:8px 0 0;border:0;padding:0}.side-note p{display:none}.condition,.actions{padding:14px 15px}.editor label,textarea{padding-left:15px;padding-right:15px}.feedback{margin-left:15px;margin-right:15px}.tasks{margin-top:16px}}
+</style>
+</head>
+<body>
+<header><div class="bar"><div class="brand"><span class="icon" aria-hidden="true">&gt;_</span> Практикум по Python</div><div class="score"><span id="score" aria-live="polite"></span><progress id="progress" value="0" max="45" aria-label="Принятые задачи"></progress></div></div></header>
+<div class="layout">
+<aside aria-label="Темы">
+<div class="desktop"><h2>Темы курса</h2><nav id="topics" aria-label="Темы курса"></nav></div>
+<div class="mobile"><label for="topic-select">Тема курса</label><select id="topic-select"></select></div>
+<div class="side-note"><button type="button" id="export" class="export">Скачать принятые решения</button><p>Прогресс сохраняется в этом браузере. Файл с решениями можно передать учителю.</p></div>
+</aside>
+<main>
+<p id="number" class="eyebrow"></p><h1 id="topic-title"></h1>
+<p class="intro">Выбери задачу и отправь код на проверку. Для задач доступны команды из курса, без импортов.</p>
+<nav id="tasks" class="tasks" aria-label="Задачи текущей темы"></nav>
+<section class="sheet" aria-labelledby="task-title">
+<div class="condition"><h2 id="task-title"></h2><p id="condition"></p></div>
+<div class="editor"><label for="code">Твой код <span>Python 3</span></label>
+<textarea id="code" maxlength="16000" spellcheck="false" autocorrect="off" autocomplete="off" autocapitalize="off" placeholder="# Напиши или вставь решение"></textarea></div>
+<div class="actions"><button type="button" id="submit" class="submit">Сдать на проверку</button><span class="shortcut">Ctrl + Enter</span></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+</section>
+<nav class="bottom" aria-label="Переключение задач"><button type="button" id="prev" class="arrow">← Предыдущая</button><button type="button" id="next" class="arrow">Следующая →</button></nav>
+</main>
+</div>
+<script>
+'use strict';
+const TOPICS = __TASK_DATA__;
+const GRADER = __GRADER_SOURCE__;
+const CDN = 'https://cdn.jsdelivr.net/pyodide/v0.28.3/full/';
+const TASKS = TOPICS.flatMap(t => t.tasks);
+const KEY = 'python-practice-45:v1';
+const by = id => document.getElementById(id);
+const editor = by('code');
+const outcomes = new Map();
+let work = {}, active = 0, pending, runner, ready = false, timer;
+try {
+  const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+  if (saved && typeof saved === 'object') work = saved;
+} catch {}
+function store() { try { localStorage.setItem(KEY, JSON.stringify(work)); } catch {} }
+function entry(task) { return work[task.id] ??= {}; }
+function button(label, className, fn) {
+  const node = document.createElement('button');
+  node.type = 'button'; node.className = className; node.textContent = label;
+  node.addEventListener('click',fn);
+  return node;
+}
+function result(value) {
+  const node = by('feedback');
+  node.replaceChildren(); node.hidden = !value;
+  if (!value) return;
+  node.className = 'feedback ' + value.status;
+  const heading = document.createElement('strong');
+  heading.textContent = {ok:'Решение принято',wrong:'Пока не принято',blocked:'Ограничение практикума',error:'Ошибка',busy:'Проверка'}[value.status];
+  const detail = document.createElement('div');
+  detail.textContent = value.status === 'ok' ? 'Пройдено тестов: ' + value.passed + ' из ' + value.total : value.detail;
+  node.append(heading, detail);
+  if ('actual' in value) {
+    const sample = document.createElement('pre');
+    sample.textContent = (value.inputs.length ? 'Данные теста: ' + JSON.stringify(value.inputs) + '\n' : '') +
+      'Твой результат: ' + (value.actual || 'нет вывода');
+    node.append(sample);
+  }
+}
+function nav() {
+  const current = TASKS[active], topic = TOPICS[Math.floor(active / 5)];
+  const focus = document.activeElement?.dataset.control;
+  by('topics').replaceChildren();
+  for (const item of TOPICS) {
+    const b = button('', 'topic', () => select((item.number - 1) * 5));
+    b.dataset.control = 'topic-' + item.number;
+    if (item === topic) b.setAttribute('aria-current','true');
+    const num = document.createElement('span'); num.textContent = String(item.number).padStart(2,'0');
+    const name = document.createElement('span'); name.textContent = item.title;
+    const score = document.createElement('small'); score.textContent = item.tasks.filter(t => work[t.id]?.accepted).length + '/5';
+    b.append(num,name,score); by('topics').append(b);
+  }
+  by('topic-select').value = topic.number;
+  by('number').textContent = 'Тема ' + String(topic.number).padStart(2,'0');
+  by('topic-title').textContent = topic.title;
+  by('tasks').replaceChildren();
+  for (const task of topic.tasks) {
+    const passed = Boolean(work[task.id]?.accepted);
+    const b = button(task.id + (passed ? ' ✓' : ''), 'task', () => select(TASKS.indexOf(task)));
+    b.dataset.control = 'task-' + task.id;
+    if (task === current) b.setAttribute('aria-current','true');
+    if (passed) b.setAttribute('aria-label', 'Задача ' + task.id + ' принята');
+    by('tasks').append(b);
+  }
+  if (focus) [...document.querySelectorAll('[data-control]')].find(el => el.dataset.control === focus)?.focus({preventScroll:true});
+  const n = TASKS.filter(t => work[t.id]?.accepted).length;
+  by('score').textContent = n + ' из ' + TASKS.length + ' принято';
+  by('progress').value = n;
+  by('export').disabled = n === 0;
+}
+function sync() {
+  const task = TASKS[active], saved = entry(task), last = outcomes.get(task.id);
+  by('submit').disabled = Boolean(pending);
+  if (pending?.task === task) result({status:'busy',detail:pending.stage});
+  else if (last?.code === editor.value) result(last.verdict);
+  else if (saved.accepted && saved.accepted === editor.value)
+    result({status:'ok',passed:task.cases.length,total:task.cases.length});
+  else result(null);
+}
+function select(i) {
+  if (i < 0 || i >= TASKS.length) return;
+  active = i;
+  const task = TASKS[i];
+  nav();
+  by('task-title').textContent = 'Задача ' + task.id;
+  by('condition').textContent = task.prompt;
+  editor.value = entry(task).draft || '';
+  by('prev').disabled = i === 0;
+  by('next').disabled = i === TASKS.length - 1;
+  sync();
+}
+function finish(verdict, reset = false) {
+  if (!pending) return;
+  clearTimeout(timer);
+  const {task,code} = pending;
+  pending = undefined;
+  if (reset) { runner?.terminate(); runner = undefined; ready = false; }
+  outcomes.set(task.id,{code,verdict});
+  if (verdict.status === 'ok') {
+    entry(task).accepted = code;
+    store(); nav();
+  }
+  sync();
+}
+function workerMain(base, grader) {
+  let gradePython;
+  self.onmessage = async ({data}) => {
+    try {
+      if (data.type === 'start') {
+        importScripts(base + 'pyodide.js');
+        const runtime = await loadPyodide({indexURL:base});
+        runtime.runPython(grader);
+        gradePython = runtime.globals.get('grade_json');
+        postMessage({type:'ready'});
+      } else {
+        const verdict = JSON.parse(gradePython(JSON.stringify(data.payload)));
+        postMessage({type:'result',verdict});
+      }
+    } catch {
+      postMessage({type:'error',stage:data.type});
+    }
+  };
+}
+function run() {
+  clearTimeout(timer);
+  pending.stage = 'Запускаю тесты…'; sync();
+  timer = setTimeout(() => finish({status:'error',detail:'Код выполнялся слишком долго. Проверь, заканчивается ли цикл.'},true),4000);
+  runner.postMessage({type:'grade',payload:{id:pending.task.id,cases:pending.task.cases,code:pending.code}});
+}
+function grade() {
+  if (pending) return;
+  const task = TASKS[active], code = editor.value;
+  if (!code.trim()) { result({status:'wrong',detail:'Сначала вставь или напиши код.'}); editor.focus(); return; }
+  pending = {task,code,stage:'Загружаю Python. Первый запуск может занять несколько секунд…'};
+  sync();
+  if (ready) { run(); return; }
+  timer = setTimeout(() => finish({status:'error',detail:'Python долго загружается. Проверь интернет и повтори попытку.'},true),45000);
+  const source = '(' + workerMain.toString() + ')(' + JSON.stringify(CDN) + ',' + JSON.stringify(GRADER) + ');';
+  const url = URL.createObjectURL(new Blob([source],{type:'text/javascript'}));
+  try {
+    runner = new Worker(url);
+    runner.onmessage = ({data}) => {
+      if (!pending) return;
+      if (data.type === 'ready') { ready = true; run(); }
+      else if (data.type === 'result') finish(data.verdict);
+      else finish({status:'error',detail:data.stage === 'start' ?
+        'Не удалось загрузить Python. Проверь интернет и попробуй снова.' : 'Проверка прервалась. Попробуй снова.'},true);
+    };
+    runner.onerror = () => finish({status:'error',detail:'Браузер не смог запустить Python. Проверь подключение.'},true);
+    runner.postMessage({type:'start'});
+  } catch { finish({status:'error',detail:'Этот браузер не смог запустить проверку.'},true); }
+  finally { URL.revokeObjectURL(url); }
+}
+for (const topic of TOPICS) {
+  const item = document.createElement('option');
+  item.value = topic.number; item.textContent = topic.number + '. ' + topic.title;
+  by('topic-select').append(item);
+}
+by('topic-select').onchange = e => select((Number(e.target.value) - 1) * 5);
+by('prev').onclick = () => select(active - 1);
+by('next').onclick = () => select(active + 1);
+by('submit').onclick = grade;
+editor.oninput = () => { entry(TASKS[active]).draft = editor.value; store(); sync(); };
+editor.onkeydown = e => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); grade(); }
+};
+by('export').onclick = () => {
+  const accepted = TASKS.filter(task => work[task.id]?.accepted);
+  const content = ['Практикум по Python', 'Принято ' + accepted.length + ' из ' + TASKS.length,
+    ...accepted.map(task => 'Задача ' + task.id + '\n\n' + work[task.id].accepted)].join('\n\n');
+  const url = URL.createObjectURL(new Blob(['\ufeff',content],{type:'text/plain;charset=utf-8'}));
+  const link = document.createElement('a');
+  link.href = url; link.download = 'python-resheniya.txt'; link.click();
+  setTimeout(() => URL.revokeObjectURL(url),1000);
+};
+select(0);
+</script>
+</body>
+</html>
+
+
